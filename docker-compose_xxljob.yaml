@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  xxl-job_postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: xxl-job_postgres
+    extra_hosts:
+      - "mail.sttptech.com:61.221.169.239"
+    environment:
+      - TZ=Asia/Taipei
+    ports:
+      - 19085:8080
+#      - 19090:9090
+    networks:
+      - sttptech
+    volumes:
+      - ./volumes/log:/data/applogs/xxl-job
+
+networks:
+  sttptech:
+    external:
+      name: sttpbaseproject_sttptech
